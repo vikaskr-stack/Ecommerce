@@ -18,6 +18,7 @@ import ModeSelection from "./pages/ModeSelection";
 import SellerDashboard from "./pages/SellerDashboard";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
+import VerifyOTP from "./pages/VerifyOTP";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -49,6 +50,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/wishlist" element={<Wishlist />} />

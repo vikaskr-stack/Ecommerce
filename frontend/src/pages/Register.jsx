@@ -44,7 +44,11 @@ function Register() {
 
     try {
       await registerUser(formData);
-      navigate("/login");
+      navigate("/verify-otp", {
+        state: {
+          email: formData.email,
+        },
+      });
     } catch (error) {
       console.error("Registration error:", error);
       setError(error.message || "Registration failed");

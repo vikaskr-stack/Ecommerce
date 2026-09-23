@@ -265,3 +265,24 @@ export const cancelOrder = async (orderId, token) => {
 
   return result;
 };
+
+export const verifyOTP = async (email, otp) => {
+  const response = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      otp,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "OTP verification failed");
+  }
+
+  return data;
+};

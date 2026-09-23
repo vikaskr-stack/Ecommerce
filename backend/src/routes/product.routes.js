@@ -6,25 +6,19 @@ import {
   getProductById,
   updateProduct,
   deleteProduct,
-  getMyProducts
+  getMyProducts,
 } from "../controllers/product.controllers.js";
+
 import { verifyJWT } from "../middlewares/auth.middlewares.js";
-import { verifyAdmin } from "../middlewares/admin.middlewares.js";
 
 const router = Router();
-
 
 router.get("/", getProducts);
 router.get("/seller", verifyJWT, getMyProducts);
 router.get("/:id", getProductById);
 
 router.post("/", verifyJWT, createProduct);
-
 router.put("/:id", verifyJWT, updateProduct);
 router.delete("/:id", verifyJWT, deleteProduct);
-
-
-
-
 
 export default router;
