@@ -44,7 +44,7 @@ function Register() {
 
     try {
       await registerUser(formData);
-      navigate("/verify-otp", {
+      navigate("/login", {
         state: {
           email: formData.email,
         },

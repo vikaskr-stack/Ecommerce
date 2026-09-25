@@ -2,7 +2,8 @@ import {Router} from "express"
 import {
   registerUser,
   loginUser,
-  verifyOTP,
+  makeAdmin
+ 
 } from "../controllers/auth.controllers.js";
 import {createProduct,getProducts} from "../controllers/product.controllers.js"
 
@@ -11,7 +12,9 @@ import {createProduct,getProducts} from "../controllers/product.controllers.js"
 const router=Router()
 router.post("/register",registerUser)
 router.post("/login",loginUser)
-router.post("/verify-otp", verifyOTP);
+router.patch("/make-admin", makeAdmin);
+
+
 
 
 
