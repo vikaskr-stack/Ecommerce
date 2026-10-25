@@ -256,9 +256,12 @@ login(result.data.accessToken, result.data);
                       Password
                     </label>
 
-                    <span className="text-xs font-semibold text-slate-400">
-                      Keep it secure
-                    </span>
+                    <Link
+                      to="/forgot-password"
+                      className="text-xs font-semibold text-indigo-600 transition hover:text-indigo-800"
+                    >
+                      Forgot password?
+                    </Link>
                   </div>
 
                   <div className="group relative">

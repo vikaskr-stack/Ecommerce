@@ -18,7 +18,8 @@ import ModeSelection from "./pages/ModeSelection";
 import SellerDashboard from "./pages/SellerDashboard";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
-
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,7 +51,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
+
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/wishlist" element={<Wishlist />} />
@@ -65,6 +66,8 @@ function App() {
           path="/seller/products/edit/:productId"
           element={<EditProduct />}
         />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );
