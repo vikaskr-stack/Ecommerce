@@ -5,9 +5,6 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { sendEmail } from "../services/emailService.js";
 
-
-
-
 export const registerUser = async (req, res) => {
   try {
     const { username, email, password, fullName } = req.body;
@@ -60,7 +57,6 @@ export const registerUser = async (req, res) => {
   }
 };
 
-
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -86,28 +82,24 @@ export const loginUser = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN },
     );
-    return res
-      .status(200)
-      .json({
-        success: true,
-        message: "Login successful",
-        data: {
-          id: user._id,
-          username: user.username,
-          email: user.email,
-          fullName: user.fullName,
-          role: user.role,
-          accessToken: accesssToken,
-        },
-      });
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      data: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+        accessToken: accesssToken,
+      },
+    });
   } catch (error) {
     console.error("❌ Login error:", error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: "Something went wrong while logging in",
-      });
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong while logging in",
+    });
   }
 };
 export const makeAdmin = async (req, res) => {
@@ -152,7 +144,6 @@ export const makeAdmin = async (req, res) => {
     });
   }
 };
-
 
 export const forgotPassword = async (req, res) => {
   try {
@@ -212,7 +203,11 @@ export const forgotPassword = async (req, res) => {
 
     return res.status(200).json({ success: true, message });
   } catch (error) {
-    console.error("Forgot password error:", error.message);
+    console.error("Forgot password error:", error);
+    console.error("Error message:", error.message);
+    console.error("Error code:", error.code);
+    console.error("Error command:", error.command);
+    console.error("Error response:", error.response);
 
     return res.status(500).json({
       success: false,
@@ -220,7 +215,6 @@ export const forgotPassword = async (req, res) => {
     });
   }
 };
-
 
 export const resetPassword = async (req, res) => {
   try {
