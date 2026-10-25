@@ -1,4 +1,5 @@
 const API_BASE_URL = "https://ecommerce-zqms.onrender.com/api/v1";
+// const API_BASE_URL = "http://localhost:8000/api/v1";
 
 export const getProducts = async () => {
   try {
@@ -265,4 +266,45 @@ export const cancelOrder = async (orderId, token) => {
 
   return result;
 };
+
+export const forgotPassword = async ({ email }) => {
+  const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Failed to request password reset");
+  }
+
+  return result;
+};
+
+
+export const resetPassword = async (token, password) => {
+  const response = await fetch(
+    `${API_BASE_URL}/auth/reset-password/${encodeURIComponent(token)}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password }),
+    },
+  );
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Failed to reset password");
+  }
+
+  return result;
+};
+
 
